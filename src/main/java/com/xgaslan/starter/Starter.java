@@ -14,10 +14,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Starter {
 
     public static void main(String[] args) {
-        Dotenv.configure()
-                .ignoreIfMalformed()
-                .ignoreIfMissing()
-                .load();
+        Dotenv dotenv = Dotenv.configure().load();
+
+        System.out.println("DB_URL = " + dotenv.get("DB_URL"));
+        System.out.println("DB_USERNAME = " + dotenv.get("DB_USERNAME"));
+        System.out.println("DB_PASSWORD = " + dotenv.get("DB_PASSWORD"));
+
+        dotenv.entries().forEach(entry ->
+                System.setProperty(entry.getKey(), entry.getValue())
+        );
+        System.out.println("Environment variables loaded successfully.");
         SpringApplication.run(Starter.class, args);
     }
 

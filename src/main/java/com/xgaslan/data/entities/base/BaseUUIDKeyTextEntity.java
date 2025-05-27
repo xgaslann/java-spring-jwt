@@ -11,7 +11,4 @@ import java.util.UUID;
 @Setter
 @MappedSuperclass
 public abstract class BaseUUIDKeyTextEntity extends BaseTextEntity {
-
-    @Column(nullable = false)
-    private UUID objectId;
 }

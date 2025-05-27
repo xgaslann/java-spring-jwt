@@ -27,8 +27,7 @@ public class Department extends BaseUUIDKeyEntity {
     @Column(nullable = false, unique = true)
     private String code;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "object_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DepartmentText> texts;
 
 }

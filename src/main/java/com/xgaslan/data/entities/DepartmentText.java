@@ -1,23 +1,20 @@
 package com.xgaslan.data.entities;
 
 import com.xgaslan.data.entities.base.BaseUUIDKeyTextEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
         name = "department_text",
         indexes = {
-                @Index(columnList = "objectId"),
-                @Index(columnList = "objectId,languageId", unique = true)
+                @Index(columnList = "department_id"),
+                @Index(columnList = "department_id,languageId", unique = true)
         }
 )
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class DepartmentText extends BaseUUIDKeyTextEntity {
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "department_id", nullable = false)
+        private Department department;
 }
