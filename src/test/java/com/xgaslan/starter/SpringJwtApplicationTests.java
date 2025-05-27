@@ -1,4 +1,4 @@
-package com.xgaslan.springjwt;
+package com.xgaslan.starter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
