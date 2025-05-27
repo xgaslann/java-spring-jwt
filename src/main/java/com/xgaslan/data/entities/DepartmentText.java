@@ -19,4 +19,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentText extends BaseUUIDKeyTextEntity {}
+public class DepartmentText extends BaseUUIDKeyTextEntity {
+}

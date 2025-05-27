@@ -5,11 +5,13 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @MappedSuperclass
 public abstract class BaseUUIDKeyTextEntity extends BaseTextEntity {
 
     @Column(nullable = false)
-    private Long objectId;
+    private UUID objectId;
 }

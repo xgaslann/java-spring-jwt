@@ -23,6 +23,6 @@ public class Employee {
     @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Department department;
 }
