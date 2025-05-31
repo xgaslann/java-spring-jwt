@@ -34,12 +34,18 @@ public class BaseEntity {
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
+        if (createdBy == null) {
+            createdBy = UUID.fromString("00000000-0000-0000-0000-000000000000"); // örnek dummy uuid
+        }
         // createdBy will be set by the service layer or security context
     }
 
     @PreUpdate
     public void preUpdate() {
         changedAt = LocalDateTime.now();
+        if (changedBy == null) {
+            changedBy = UUID.fromString("00000000-0000-0000-0000-000000000000"); // örnek dummy uuid
+        }
         // changedBy will be set by the service layer or security context
     }
 }

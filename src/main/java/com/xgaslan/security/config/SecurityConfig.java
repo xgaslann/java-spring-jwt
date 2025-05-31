@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private static final String[] PUBLIC_ENDPOINTS = {"/authenticate", "/register"};
+    private static final String[] PUBLIC_ENDPOINTS = {"/authenticate/**", "/register"};
 
     private final AppConfig _appConfig;
     private final JwtAuthenticationFilter _jwtAuthenticationFilter;
@@ -30,7 +30,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         var authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(null);
+        authenticationProvider.setUserDetailsService(_appConfig.userDetailsService());
         authenticationProvider.setPasswordEncoder(_appConfig.passwordEncoder()); // Set your password encoder here
 
         return authenticationProvider;
