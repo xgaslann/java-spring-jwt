@@ -12,7 +12,7 @@ public class EmployeeModel {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class EmployeeViewModel{
-        private UUID id;
+        private String id;
 
         private String name;
 

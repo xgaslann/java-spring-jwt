@@ -4,12 +4,10 @@ import com.xgaslan.controller.IAuthenticationController;
 import com.xgaslan.data.models.AuthenticationModel;
 import com.xgaslan.data.models.UserModel;
 import com.xgaslan.services.IAuthenticationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/authenticate")
@@ -24,14 +22,14 @@ public class AuthenticationController implements IAuthenticationController {
 
     @Override
     @PostMapping("/register")
-    public ResponseEntity<UserModel.UserViewModel> register(AuthenticationModel.Register register) {
+    public ResponseEntity<UserModel.UserViewModel> register(@Valid @RequestBody AuthenticationModel.Register register) {
         var result = _authenticationService.register(register);
         return ResponseEntity.ok(result);
     }
 
     @Override
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationModel.LoginViewModel> login(AuthenticationModel.Login login) {
+    public ResponseEntity<AuthenticationModel.LoginViewModel> login(@Valid @RequestBody AuthenticationModel.Login login) {
         return null;
     }
 
