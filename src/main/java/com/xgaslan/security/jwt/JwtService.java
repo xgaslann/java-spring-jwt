@@ -38,6 +38,7 @@ public class JwtService {
     }
 
     public SecretKey getSigningKey() {
+        var test = _jwtConfig.getSecret();
         // Implementation for retrieving the signing key
         var keyBytes = Decoders.BASE64.decode(_jwtConfig.getSecret());
         return Keys.hmacShaKeyFor(keyBytes);

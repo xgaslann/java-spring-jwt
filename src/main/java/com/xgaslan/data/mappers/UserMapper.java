@@ -3,17 +3,9 @@ package com.xgaslan.data.mappers;
 import com.xgaslan.data.entities.User;
 import com.xgaslan.data.models.AuthenticationModel;
 import com.xgaslan.data.models.UserModel;
-import com.xgaslan.security.config.AppConfig;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserMapper {
-
-    private final AppConfig _appConfig;
-
-    public UserMapper(AppConfig appConfig) {
-        _appConfig = appConfig;
-    }
-
     public static UserModel.UserViewModel toUserViewModel(User entity) {
         if (entity == null) {
             return null;

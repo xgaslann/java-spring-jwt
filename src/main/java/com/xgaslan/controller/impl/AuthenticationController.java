@@ -30,7 +30,7 @@ public class AuthenticationController implements IAuthenticationController {
     @Override
     @PostMapping("/login")
     public ResponseEntity<AuthenticationModel.LoginViewModel> login(@Valid @RequestBody AuthenticationModel.Login login) {
-        return null;
+        return ResponseEntity.ok(_authenticationService.login(login));
     }
 
     @GetMapping("/alive")
