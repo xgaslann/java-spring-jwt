@@ -1,5 +1,6 @@
 package com.xgaslan.security.config;
 
+import com.xgaslan.security.jwt.AuthEntryPoint;
 import com.xgaslan.security.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -22,11 +24,13 @@ public class SecurityConfig {
 
     private final AppConfig _appConfig;
     private final JwtAuthenticationFilter _jwtAuthenticationFilter;
+    private final AuthEntryPoint _authEntryPoint;
 
     @Autowired
-    public SecurityConfig(AppConfig appConfig, JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfig(AppConfig appConfig, JwtAuthenticationFilter jwtAuthenticationFilter, AuthEntryPoint authEntryPoint) {
         _appConfig = appConfig;
         _jwtAuthenticationFilter = jwtAuthenticationFilter;
+        _authEntryPoint = authEntryPoint;
     }
 
     @Bean
@@ -47,6 +51,9 @@ public class SecurityConfig {
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
+                .exceptionHandling(exception ->
+                        exception.authenticationEntryPoint(_authEntryPoint)
+                )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
